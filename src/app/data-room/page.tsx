@@ -34,7 +34,7 @@ export default async function DataRoomPage() {
 
             {admin && (
               <Link
-                href="/admin/data-room/new"
+                href="/data-room/new"
                 className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
               >
                 + 작성하기

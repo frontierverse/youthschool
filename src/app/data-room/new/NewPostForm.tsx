@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { createPostAction, type CreatePostState } from "@/app/admin/actions";
+import { createPostAction, type CreatePostState } from "@/app/data-room/actions";
 
 const initialState: CreatePostState = {};
 
@@ -11,7 +11,6 @@ export default function NewPostForm({
   categories: { id: string; label: string }[];
 }) {
   const [state, formAction, pending] = useActionState(createPostAction, initialState);
-  const today = new Date().toISOString().slice(0, 10);
 
   return (
     <form action={formAction} className="mt-8 space-y-5">
@@ -42,20 +41,6 @@ export default function NewPostForm({
           id="title"
           name="title"
           required
-          className="mt-1.5 w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink outline-none focus:border-primary"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="date" className="block text-sm font-medium text-ink">
-          작성일
-        </label>
-        <input
-          id="date"
-          name="date"
-          type="date"
-          required
-          defaultValue={today}
           className="mt-1.5 w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink outline-none focus:border-primary"
         />
       </div>

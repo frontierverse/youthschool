@@ -8,9 +8,17 @@ export async function middleware(request: NextRequest) {
 
   if (pathname === "/admin") {
     if (session) {
-      return NextResponse.redirect(new URL("/admin/data-room", request.url));
+      return NextResponse.redirect(new URL("/data-room", request.url));
     }
     return NextResponse.next();
+  }
+
+  if (pathname === "/admin/data-room") {
+    return NextResponse.redirect(new URL(session ? "/data-room" : "/admin", request.url));
+  }
+
+  if (pathname === "/admin/data-room/new") {
+    return NextResponse.redirect(new URL(session ? "/data-room/new" : "/admin", request.url));
   }
 
   if (pathname.startsWith("/admin/")) {
