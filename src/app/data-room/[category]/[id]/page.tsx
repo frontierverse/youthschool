@@ -42,12 +42,15 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
   const currentIndex = posts.findIndex((p) => p.id === post.id);
   const prevPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : undefined;
   const nextPost = currentIndex > 0 ? posts[currentIndex - 1] : undefined;
+  const missingLegacyAttachments = post.attachments.filter(
+    (fileName) => !post.files.some((file) => file.fileName === fileName),
+  );
 
   return (
     <>
       <ScrollToTop />
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-3xl px-6 py-14 sm:py-16">
+        <div className="mx-auto max-w-3xl px-6 py-8 sm:py-10">
           <Link
             href={`/data-room?tab=${category.id}`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-primary"
@@ -56,17 +59,17 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
             자료실 목록으로
           </Link>
 
-          <p className="mt-6 text-xs font-semibold tracking-wide text-primary">
+          <p className="mt-4 text-xs font-semibold tracking-wide text-primary">
             {category.label}
           </p>
-          <h1 className="mt-3 text-2xl font-black leading-snug tracking-tight text-ink sm:text-3xl">
+          <h1 className="mt-2 text-2xl font-black leading-snug tracking-tight text-ink sm:text-3xl">
             {post.title}
           </h1>
-          <p className="mt-4 text-sm text-muted">{post.date}</p>
+          <p className="mt-3 text-sm text-muted">{post.date}</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-6 py-14">
+      <section className="mx-auto max-w-3xl px-6 py-10">
         <div className="space-y-4">
           {post.body.map((line, i) =>
             line.startsWith("·") ? (
@@ -106,13 +109,13 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
           </div>
         )}
 
-        {post.attachments && post.attachments.length > 0 && (
+        {missingLegacyAttachments.length > 0 && (
           <div className="mt-4 rounded-2xl border border-line bg-surface p-5">
             <p className="text-xs font-semibold tracking-wide text-muted">
               첨부파일 안내 (원본 게시물 참고용, 파일 없음)
             </p>
             <ul className="mt-3 space-y-2">
-              {post.attachments.map((file) => (
+              {missingLegacyAttachments.map((file) => (
                 <li key={file} className="flex items-center gap-2 text-sm font-medium text-muted">
                   <IconPaperclip className="h-4 w-4 shrink-0 text-muted" />
                   {file}

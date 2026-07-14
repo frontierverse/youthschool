@@ -19,7 +19,7 @@ export default async function DataRoomPage() {
     <>
       <ScrollToTop />
       <section className="border-b border-line bg-surface">
-        <div className="mx-auto max-w-4xl px-6 py-8">
+        <div className="mx-auto max-w-4xl px-6 py-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="flex items-baseline gap-3">
@@ -44,7 +44,7 @@ export default async function DataRoomPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 py-10">
+      <section className="mx-auto max-w-4xl px-6 py-8">
         <Suspense>
           <ResourceBoard categories={categories} />
         </Suspense>

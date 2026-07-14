@@ -6,9 +6,9 @@ import Link from "next/link";
 import { IconClose, IconMenu } from "@/components/icons";
 
 const NAV_ITEMS = [
-  { label: "소개", href: "/#about" },
-  { label: "사업안내", href: "/#programs" },
-  { label: "지원대상", href: "/#support-target" },
+  { label: "청소년자립학교", href: "/about/youthschool" },
+  { label: "인사말", href: "/about/greeting" },
+  { label: "바자울", href: "/about/bajawool" },
   { label: "자료실", href: "/data-room" },
   { label: "후원안내", href: "/#donate" },
   { label: "오시는길", href: "/#contact" },
@@ -31,7 +31,7 @@ export default function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-4 md:flex">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}

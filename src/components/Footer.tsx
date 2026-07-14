@@ -36,9 +36,9 @@ export default function Footer() {
             <div>
               <p className="font-semibold text-white">바로가기</p>
               <ul className="mt-4 space-y-3 text-white/60">
-                <li><Link href="/#about" className="hover:text-white">소개</Link></li>
-                <li><Link href="/#programs" className="hover:text-white">사업안내</Link></li>
-                <li><Link href="/#support-target" className="hover:text-white">지원대상</Link></li>
+                <li><Link href="/about/youthschool" className="hover:text-white">청소년자립학교</Link></li>
+                <li><Link href="/about/greeting" className="hover:text-white">이사장 인사말</Link></li>
+                <li><Link href="/about/bajawool" className="hover:text-white">바자울 회복지원시설</Link></li>
                 <li><Link href="/data-room" className="hover:text-white">자료실</Link></li>
                 <li><Link href="/#donate" className="hover:text-white">후원안내</Link></li>
               </ul>

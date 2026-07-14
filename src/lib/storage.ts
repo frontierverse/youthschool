@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { createClient } from "@supabase/supabase-js";
 
-const BUCKET = "youthschool-site";
+const BUCKET = process.env.SUPABASE_STORAGE_BUCKET || "youthschool-site";
 
 function getStorageClient() {
   return createClient(
@@ -29,7 +29,9 @@ export async function uploadPostAttachment(postId: string, file: File) {
     throw new Error(`파일 업로드 실패: ${error.message}`);
   }
 
-  const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
+  const { data } = supabase.storage
+    .from(BUCKET)
+    .getPublicUrl(path, { download: file.name });
 
   return {
     fileName: file.name,

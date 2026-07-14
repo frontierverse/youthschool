@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import {
   IconArrowRight,
   IconBowl,
@@ -42,6 +44,7 @@ const PROGRAMS = [
     tag: "회복지원시설",
     title: "바자울청소년회복지원시설",
     desc: "소외되고 상처받은 청소년을 위한 회복지원시설을 운영합니다.",
+    href: "/about/bajawool",
   },
   {
     icon: IconBowl,
@@ -65,51 +68,66 @@ export default function Home() {
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-secondary/10 blur-3xl" />
 
-        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
-          <p className="inline-flex items-center rounded-full border border-line bg-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
-            사회적협동조합 청소년자립학교
-          </p>
+        <div className="relative mx-auto grid max-w-6xl items-center gap-6 px-6 pt-12 pb-10 sm:pt-14 sm:pb-12 md:grid-cols-[1fr_0.95fr] md:gap-8">
+          <div className="relative z-10">
+            <p className="inline-flex items-center rounded-full border border-line bg-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
+              사회적협동조합 청소년자립학교
+            </p>
 
-          <h1 className="mt-6 max-w-2xl text-4xl font-black leading-[1.15] tracking-tight text-ink sm:text-5xl sm:leading-[1.15]">
-            청소년은,
-            <br />
-            우리의 미래입니다
-          </h1>
+            <h1 className="mt-4 max-w-2xl text-3xl font-black leading-[1.15] tracking-tight text-ink sm:text-4xl sm:leading-[1.15]">
+              청소년은,
+              <br />
+              우리의 미래입니다
+            </h1>
 
-          <p className="mt-5 max-w-xl text-lg font-medium text-body">
-            학교 밖 청소년의 자립을 돕는 일, 사회적협동조합 청소년자립학교가
-            합니다.
-          </p>
+            <p className="mt-4 max-w-xl text-base font-medium leading-7 text-body">
+              학교 밖 청소년의 자립을 돕는 일, 사회적협동조합 청소년자립학교가
+              합니다.
+            </p>
 
-          <p className="mt-4 max-w-xl leading-7 text-body">
-            안전한 주거와 배움의 기회가 부족한 학교 밖 청소년들이 심리·정서적
-            안정을 되찾고, 사회성을 키워 독립적인 삶을 준비할 수 있도록 곁에서
-            함께합니다.
-          </p>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-body">
+              안전한 주거와 배움의 기회가 부족한 학교 밖 청소년들이 심리·정서적
+              안정을 되찾고, 사회성을 키워 독립적인 삶을 준비할 수 있도록 곁에서
+              함께합니다.
+            </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href="#programs"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
-            >
-              사업 살펴보기
-              <IconArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#donate"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-6 py-3.5 text-sm font-bold text-ink transition-colors hover:border-primary hover:text-primary"
-            >
-              후원 안내
-            </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#programs"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
+              >
+                사업 살펴보기
+                <IconArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href="#donate"
+                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-6 py-3.5 text-sm font-bold text-ink transition-colors hover:border-primary hover:text-primary"
+              >
+                후원 안내
+              </a>
+            </div>
+          </div>
+
+          <div className="relative hidden min-h-[310px] items-center justify-end md:flex">
+            <div className="pointer-events-none absolute inset-8 rounded-[42%] bg-white/45 blur-3xl" />
+            <Image
+              src="/images/home/hero-future-3d-landscape.png"
+              alt=""
+              width={1536}
+              height={1024}
+              priority
+              sizes="(max-width: 767px) 0px, (max-width: 1200px) 46vw, 520px"
+              className="relative h-auto w-full max-w-[520px] drop-shadow-[0_24px_32px_rgba(68,91,91,0.14)]"
+            />
           </div>
         </div>
 
         <div className="relative border-t border-line bg-surface/70">
-          <div className="mx-auto max-w-6xl px-6 py-6">
+          <div className="mx-auto max-w-6xl px-6 py-4">
             <p className="text-xs font-semibold tracking-wide text-muted">
               우리가 정의하는 자립
             </p>
-            <div className="mt-3 flex flex-wrap gap-x-10 gap-y-3">
+            <div className="mt-2 flex flex-wrap gap-x-10 gap-y-2">
               {PILLARS.map((p, i) => (
                 <div key={p.label} className="flex items-center gap-2">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-light text-xs font-bold text-primary">
@@ -142,6 +160,14 @@ export default function Home() {
               청소년자립학교의 존재 이유입니다. 사회적협동조합의 이념 아래
               시설과 대학, 시민단체가 함께 협력하여 청소년의 자립을 돕습니다.
             </p>
+
+            <Link
+              href="/about/youthschool"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-dark"
+            >
+              청소년자립학교 자세히 보기
+              <IconArrowRight className="h-4 w-4" />
+            </Link>
 
             <div className="mt-8 rounded-2xl border border-line bg-surface p-6">
               <p className="text-xs font-semibold tracking-wide text-secondary">
@@ -208,6 +234,15 @@ export default function Home() {
                 <p className="mt-2 text-sm leading-6 text-body">
                   {program.desc}
                 </p>
+                {program.href && (
+                  <Link
+                    href={program.href}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-dark"
+                  >
+                    자세히 보기
+                    <IconArrowRight className="h-4 w-4" />
+                  </Link>
+                )}
               </div>
             ))}
           </div>
