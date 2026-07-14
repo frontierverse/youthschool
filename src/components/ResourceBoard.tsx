@@ -63,9 +63,9 @@ export default function ResourceBoard({ categories }: { categories: BoardCategor
               <li key={post.id} className="border-b border-line">
                 <Link
                   href={`/data-room/${active.id}/${post.id}`}
-                  className="group flex items-center justify-between gap-6 py-4 transition-colors"
+                  className="group flex min-w-0 items-center justify-between gap-4 py-4 transition-colors sm:gap-6"
                 >
-                  <span className="flex items-center gap-2 text-sm font-medium leading-6 text-ink group-hover:text-primary sm:text-base">
+                  <span className="min-w-0 text-sm font-medium leading-6 text-ink group-hover:text-primary sm:text-base">
                     {post.title}
                   </span>
                   <span className="flex shrink-0 items-center gap-2 text-sm text-muted">

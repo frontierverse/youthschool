@@ -95,11 +95,11 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
                     target="_blank"
                     rel="noopener noreferrer"
                     download={file.fileName}
-                    className="flex items-center gap-2 text-sm font-medium text-ink hover:text-primary"
+                    className="flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-primary"
                   >
                     <IconPaperclip className="h-4 w-4 shrink-0 text-muted" />
-                    {file.fileName}
-                    <span className="text-xs font-normal text-muted">
+                    <span className="min-w-0 break-all">{file.fileName}</span>
+                    <span className="shrink-0 text-xs font-normal text-muted">
                       ({formatFileSize(file.size)})
                     </span>
                   </a>
@@ -116,9 +116,9 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
             </p>
             <ul className="mt-3 space-y-2">
               {missingLegacyAttachments.map((file) => (
-                <li key={file} className="flex items-center gap-2 text-sm font-medium text-muted">
+                <li key={file} className="flex min-w-0 items-center gap-2 text-sm font-medium text-muted">
                   <IconPaperclip className="h-4 w-4 shrink-0 text-muted" />
-                  {file}
+                  <span className="min-w-0 break-all">{file}</span>
                 </li>
               ))}
             </ul>

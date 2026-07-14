@@ -295,12 +295,12 @@ export default function Home() {
       {/* Donate */}
       <section id="donate" className="mx-auto max-w-6xl px-6 py-24">
         <div className="overflow-hidden rounded-3xl border border-line bg-surface">
-          <div className="grid gap-8 p-10 sm:p-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="grid gap-8 p-6 sm:p-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <p className="text-xs font-semibold tracking-wide text-accent">
                 후원안내
               </p>
-              <h2 className="mt-3 text-3xl font-black leading-tight tracking-tight text-ink">
+              <h2 className="mt-3 text-2xl font-black leading-tight tracking-tight text-ink sm:text-3xl">
                 청소년의 자립을,
                 <br />
                 함께 응원해주세요
@@ -314,9 +314,9 @@ export default function Home() {
             <div className="flex flex-col gap-3">
               <a
                 href="tel:063-837-0129"
-                className="flex items-center justify-between gap-4 rounded-2xl bg-accent px-6 py-4 text-white transition-colors hover:bg-accent-dark"
+                className="flex items-center gap-3 rounded-2xl bg-accent px-4 py-4 text-white transition-colors hover:bg-accent-dark sm:justify-between sm:gap-4 sm:px-6"
               >
-                <span className="flex items-center gap-3">
+                <span className="flex min-w-0 items-center gap-3">
                   <IconPhone className="h-5 w-5" />
                   <span>
                     <span className="block text-xs font-medium text-white/80">
@@ -327,24 +327,24 @@ export default function Home() {
                     </span>
                   </span>
                 </span>
-                <IconArrowRight className="h-4 w-4" />
+                <IconArrowRight className="hidden h-4 w-4 sm:block" />
               </a>
               <a
                 href="mailto:200233sook@naver.com"
-                className="flex items-center justify-between gap-4 rounded-2xl border border-line px-6 py-4 text-ink transition-colors hover:border-primary hover:text-primary"
+                className="flex items-center gap-3 rounded-2xl border border-line px-4 py-4 text-ink transition-colors hover:border-primary hover:text-primary sm:justify-between sm:gap-4 sm:px-6"
               >
-                <span className="flex items-center gap-3">
-                  <IconMail className="h-5 w-5" />
-                  <span>
+                <span className="flex min-w-0 items-center gap-3">
+                  <IconMail className="h-5 w-5 shrink-0" />
+                  <span className="min-w-0">
                     <span className="block text-xs font-medium text-muted">
                       이메일 문의
                     </span>
-                    <span className="block text-base font-bold">
+                    <span className="block break-all text-sm font-bold sm:text-base">
                       200233sook@naver.com
                     </span>
                   </span>
                 </span>
-                <IconArrowRight className="h-4 w-4" />
+                <IconArrowRight className="hidden h-4 w-4 sm:block" />
               </a>
             </div>
           </div>
