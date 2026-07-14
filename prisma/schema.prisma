@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// This app only owns the "youthschool_site" Postgres schema in the shared
+// database. Do NOT add "public" (or any other existing schema) here — doing
+// so would let `prisma db push` / `migrate` diff and drop tables that belong
+// to the other application sharing this database.
+datasource db {
+  provider = "postgresql"
+  schemas  = ["youthschool_site"]
+}
+
+model ResourceCategory {
+  id    String         @id
+  label String
+  order Int            @default(0)
+  posts ResourcePost[]
+
+  @@map("resource_categories")
+  @@schema("youthschool_site")
+}
+
+model ResourcePost {
+  id  String @id @default(cuid())
+  // Legacy post id from the original youthschool.co.kr bulletin board.
+  // Null for posts created in this admin CMS.
+  idx Int?   @unique
+
+  title       String
+  date        DateTime @db.Date
+  body        String[]
+  attachments String[] @default([])
+  // Original board URL for imported posts; null for admin-created posts.
+  sourceHref  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  categoryId String
+  category   ResourceCategory @relation(fields: [categoryId], references: [id])
+  files      PostAttachment[]
+
+  @@index([categoryId])
+  @@map("resource_posts")
+  @@schema("youthschool_site")
+}
+
+// Real uploaded files (Supabase Storage), attached to admin-created posts.
+// Distinct from ResourcePost.attachments, which only holds legacy filenames
+// (no real file) imported from the original board.
+model PostAttachment {
+  id        String   @id @default(cuid())
+  fileName  String
+  url       String
+  size      Int
+  createdAt DateTime @default(now())
+
+  postId String
+  post   ResourcePost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@map("post_attachments")
+  @@schema("youthschool_site")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  username     String   @unique @map("email")
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin_users")
+  @@schema("youthschool_site")
+}
