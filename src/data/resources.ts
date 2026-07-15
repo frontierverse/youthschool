@@ -226,11 +226,9 @@ export const RESOURCE_CATEGORIES: ResourceCategory[] = [
       {
         idx: 171576923,
         title: "2025년 공익법인 결산자료공시",
-        date: "2026-06-01",
-        body: [
-          "2025년 공익법인 결산자료(재무상태표, 기부금품의 모집 및 지출명세서)를 첨부와 같이 공시합니다.",
-        ],
-        attachments: ["2025년 재무상태표.pdf", "2025년 기부금품의모집및지출명세서.pdf"],
+        date: "2026-05-21",
+        body: ["2025년 공익법인 결산자료(재무상태표)를 첨부와 같이 공시합니다."],
+        attachments: ["2025년 재무상태표.pdf"],
         sourceHref: sourceUrl(40, 171576923),
       },
       {
