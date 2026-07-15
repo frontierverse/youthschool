@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   IconArrowRight,
+  IconBank,
   IconBowl,
   IconCompass,
   IconHeartHands,
@@ -312,14 +313,24 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <a
-                href="tel:063-837-0129"
-                className="flex items-center gap-3 rounded-2xl bg-accent px-4 py-4 text-white transition-colors hover:bg-accent-dark sm:justify-between sm:gap-4 sm:px-6"
-              >
+              <div className="flex items-center gap-3 rounded-2xl bg-accent px-4 py-4 text-white sm:justify-between sm:gap-4 sm:px-6">
                 <span className="flex min-w-0 items-center gap-3">
-                  <IconPhone className="h-5 w-5" />
-                  <span>
+                  <IconBank className="h-5 w-5 shrink-0" />
+                  <span className="min-w-0">
                     <span className="block text-xs font-medium text-white/80">
+                      후원계좌 (농협)
+                    </span>
+                    <span className="block break-all text-base font-bold">
+                      351 1091 4420 73
+                    </span>
+                  </span>
+                </span>
+              </div>
+              <div className="flex items-center gap-3 rounded-2xl border border-line px-4 py-4 text-ink sm:justify-between sm:gap-4 sm:px-6">
+                <span className="flex min-w-0 items-center gap-3">
+                  <IconPhone className="h-5 w-5 shrink-0" />
+                  <span>
+                    <span className="block text-xs font-medium text-muted">
                       전화 문의
                     </span>
                     <span className="block text-base font-bold">
@@ -327,12 +338,8 @@ export default function Home() {
                     </span>
                   </span>
                 </span>
-                <IconArrowRight className="hidden h-4 w-4 sm:block" />
-              </a>
-              <a
-                href="mailto:200233sook@naver.com"
-                className="flex items-center gap-3 rounded-2xl border border-line px-4 py-4 text-ink transition-colors hover:border-primary hover:text-primary sm:justify-between sm:gap-4 sm:px-6"
-              >
+              </div>
+              <div className="flex items-center gap-3 rounded-2xl border border-line px-4 py-4 text-ink sm:justify-between sm:gap-4 sm:px-6">
                 <span className="flex min-w-0 items-center gap-3">
                   <IconMail className="h-5 w-5 shrink-0" />
                   <span className="min-w-0">
@@ -344,8 +351,7 @@ export default function Home() {
                     </span>
                   </span>
                 </span>
-                <IconArrowRight className="hidden h-4 w-4 sm:block" />
-              </a>
+              </div>
             </div>
           </div>
         </div>

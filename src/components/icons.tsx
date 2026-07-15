@@ -187,6 +187,16 @@ export function IconPin({ className }: IconProps) {
   );
 }
 
+export function IconBank({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path d="M3.5 9.5 12 4.5l8.5 5" stroke="currentColor" strokeWidth={base} strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4.5 9.5v8.5M9 9.5v8.5M15 9.5v8.5M19.5 9.5v8.5" stroke="currentColor" strokeWidth={base} strokeLinecap="round" />
+      <path d="M3.5 19.5h17" stroke="currentColor" strokeWidth={base} strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function IconUsers({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
