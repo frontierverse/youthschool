@@ -66,60 +66,57 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-secondary/10 blur-3xl" />
+        <div className="relative isolate overflow-hidden">
+          <Image
+            src="/images/home/hero-youths.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="-z-20 object-cover object-center"
+          />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-black/65 via-black/30 to-black/5" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-6 px-6 pt-12 pb-10 sm:pt-14 sm:pb-12 md:grid-cols-[1fr_0.95fr] md:gap-8">
-          <div className="relative z-10">
-            <p className="inline-flex items-center rounded-full border border-line bg-surface px-4 py-1.5 text-xs font-semibold tracking-wide text-primary">
-              사회적협동조합 청소년자립학교
-            </p>
+          <div className="relative mx-auto flex min-h-[560px] max-w-6xl items-center px-6 py-16 sm:min-h-[600px] sm:py-20">
+            <div className="max-w-2xl">
+              <p className="inline-flex items-center rounded-full border border-white/30 bg-black/15 px-4 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
+                사회적협동조합 청소년자립학교
+              </p>
 
-            <h1 className="mt-4 max-w-2xl text-3xl font-black leading-[1.15] tracking-tight text-ink sm:text-4xl sm:leading-[1.15]">
-              청소년은,
-              <br />
-              우리의 미래입니다
-            </h1>
+              <h1 className="mt-4 max-w-2xl text-3xl font-black leading-[1.15] tracking-tight text-white drop-shadow-sm sm:text-5xl sm:leading-[1.12]">
+                청소년은,
+                <br />
+                우리의 미래입니다
+              </h1>
 
-            <p className="mt-4 max-w-xl text-base font-medium leading-7 text-body">
-              학교 밖 청소년의 자립을 돕는 일, 사회적협동조합 청소년자립학교가
-              합니다.
-            </p>
+              <p className="mt-5 max-w-xl text-base font-medium leading-7 text-white sm:text-lg">
+                학교 밖 청소년의 자립을 돕는 일,
+                사회적협동조합 청소년자립학교가 합니다.
+              </p>
 
-            <p className="mt-3 max-w-xl text-sm leading-6 text-body">
-              안전한 주거와 배움의 기회가 부족한 학교 밖 청소년들이 심리·정서적
-              안정을 되찾고, 사회성을 키워 독립적인 삶을 준비할 수 있도록 곁에서
-              함께합니다.
-            </p>
+              <p className="mt-3 max-w-xl text-sm leading-6 text-white/85">
+                안전한 주거와 배움의 기회가 부족한 학교 밖 청소년들이
+                심리·정서적 안정을 되찾고, 사회성을 키워 독립적인 삶을 준비할 수
+                있도록 곁에서 함께합니다.
+              </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="#programs"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
-              >
-                사업 살펴보기
-                <IconArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href="#donate"
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-6 py-3.5 text-sm font-bold text-ink transition-colors hover:border-primary hover:text-primary"
-              >
-                후원 안내
-              </a>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="#programs"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-primary-dark transition-colors hover:bg-primary-light"
+                >
+                  사업 살펴보기
+                  <IconArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href="#donate"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-black/15 px-6 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-white/15"
+                >
+                  후원 안내
+                </a>
+              </div>
             </div>
-          </div>
-
-          <div className="relative hidden min-h-[310px] items-center justify-end md:flex">
-            <div className="pointer-events-none absolute inset-8 rounded-[42%] bg-white/45 blur-3xl" />
-            <Image
-              src="/images/home/hero-future-3d-landscape.png"
-              alt=""
-              width={1536}
-              height={1024}
-              priority
-              sizes="(max-width: 767px) 0px, (max-width: 1200px) 46vw, 520px"
-              className="relative h-auto w-full max-w-[520px] drop-shadow-[0_24px_32px_rgba(68,91,91,0.14)]"
-            />
           </div>
         </div>
 
