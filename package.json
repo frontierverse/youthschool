@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run db:oneoff:kb-life && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "db:oneoff:kb-life": "tsx scripts/upsert-seeded-resource-posts.ts",
     "db:studio": "prisma studio",
     "attachments:import": "tsx scripts/import-legacy-attachments.ts",
     "admin:create": "tsx prisma/create-admin.ts"
