@@ -1,6 +1,7 @@
-// Seed data only: this is imported by prisma/seed.ts to import the 26
-// original youthschool.co.kr posts into the database. The live site reads
-// from the database via src/lib/resource-queries.ts, not from this file.
+// Seed data only: this is imported by prisma/seed.ts to import the original
+// youthschool.co.kr posts and explicitly backfilled posts into the database.
+// The live site reads from the database via src/lib/resource-queries.ts, not
+// from this file.
 export type ResourcePost = {
   idx: number;
   title: string;
@@ -14,6 +15,15 @@ export type ResourceCategory = {
   id: string;
   label: string;
   posts: ResourcePost[];
+};
+
+export type SeededResourcePost = {
+  id: string;
+  categoryId: string;
+  title: string;
+  date: string;
+  body: string[];
+  attachments?: string[];
 };
 
 function sourceUrl(board: 38 | 40, idx: number): string {
@@ -332,6 +342,32 @@ export const RESOURCE_CATEGORIES: ResourceCategory[] = [
         attachments: ["공개 보고서 기부금모금액 및 활용실적명세.pdf"],
         sourceHref: sourceUrl(40, 6165341),
       },
+    ],
+  },
+];
+
+export const SEEDED_RESOURCE_POSTS: SeededResourcePost[] = [
+  {
+    id: "seed-notice-2025-11-01-kb-life-recruitment",
+    categoryId: "notice",
+    title: "사회복지공동모금회 KB라이프 지정기탁사업 전담인력 모집 공고",
+    date: "2025-11-01",
+    body: [
+      "사회복지공동모금회 KB라이프 지정기탁사업을 담당할 전담인력을 다음과 같이 모집합니다.",
+      "모집분야",
+      "· 지정기탁사업 전담인력",
+      "담당업무",
+      "· 사업참여자 관리",
+      "· 카페 관리·감독 업무",
+      "근무조건",
+      "· 고용형태: 계약직(1년)",
+      "· 계약기간: 2025년 12월 1일 ~ 2026년 11월 30일",
+      "· 근무시간: 1일 8시간",
+      "· 사회보험: 4대보험 가입",
+      "· 급여: 상담 후 결정",
+      "우대조건",
+      "· 사회복지사 자격증 소지자",
+      "· 바리스타 자격증 소지자",
     ],
   },
 ];
