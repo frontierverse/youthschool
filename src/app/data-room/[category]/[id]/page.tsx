@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategory, getCategoryPostList, getPost } from "@/lib/resource-queries";
 import { IconArrowLeft, IconPaperclip } from "@/components/icons";
+import RecordPostView from "@/components/RecordPostView";
 import ScrollToTop from "@/components/ScrollToTop";
 
 type Params = { category: string; id: string };
@@ -49,6 +50,7 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
   return (
     <>
       <ScrollToTop />
+      <RecordPostView postId={post.id} />
       <section className="border-b border-line bg-surface">
         <div className="mx-auto max-w-3xl px-6 py-8 sm:py-10">
           <Link
@@ -65,7 +67,10 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
           <h1 className="mt-2 text-2xl font-black leading-snug tracking-tight text-ink sm:text-3xl">
             {post.title}
           </h1>
-          <p className="mt-3 text-sm text-muted">{post.date}</p>
+          <p className="mt-3 flex items-center gap-3 text-sm text-muted">
+            <span>{post.date}</span>
+            <span>조회 {post.views}</span>
+          </p>
         </div>
       </section>
 

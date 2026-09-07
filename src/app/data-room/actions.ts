@@ -1,9 +1,31 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/session";
 import { uploadPostAttachment } from "@/lib/storage";
+
+const VIEW_COOKIE_MAX_AGE = 60 * 60 * 24; // 24시간 내 재방문은 조회수에 반영하지 않음
+
+export async function recordPostView(postId: string) {
+  const store = await cookies();
+  const cookieName = `viewed_${postId}`;
+  if (store.get(cookieName)) return;
+
+  await prisma.resourcePost.update({
+    where: { id: postId },
+    data: { views: { increment: 1 } },
+  });
+
+  store.set(cookieName, "1", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: VIEW_COOKIE_MAX_AGE,
+  });
+}
 
 export type CreatePostState = { error?: string };
 

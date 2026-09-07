@@ -8,7 +8,7 @@ import { IconArrowRight } from "@/components/icons";
 type BoardCategory = {
   id: string;
   label: string;
-  posts: { id: string; title: string; date: string }[];
+  posts: { id: string; title: string; date: string; views: number }[];
 };
 
 export default function ResourceBoard({ categories }: { categories: BoardCategory[] }) {
@@ -70,6 +70,7 @@ export default function ResourceBoard({ categories }: { categories: BoardCategor
                   </span>
                   <span className="flex shrink-0 items-center gap-2 text-sm text-muted">
                     {post.date}
+                    <span className="hidden sm:inline">· 조회 {post.views}</span>
                     <IconArrowRight className="h-3.5 w-3.5 -translate-x-1 text-muted opacity-0 transition-all group-hover:translate-x-0 group-hover:text-primary group-hover:opacity-100" />
                   </span>
                 </Link>

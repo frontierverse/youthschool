@@ -13,6 +13,7 @@ export async function getCategoriesWithPosts() {
       id: post.id,
       title: post.title,
       date: post.date.toISOString().slice(0, 10),
+      views: post.views,
     })),
   }));
 }
@@ -37,6 +38,7 @@ export async function getPost(categoryId: string, id: string) {
     body: post.body,
     attachments: post.attachments,
     sourceHref: post.sourceHref,
+    views: post.views,
     files: post.files.map((f) => ({ fileName: f.fileName, url: f.url, size: f.size })),
   };
 }
