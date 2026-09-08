@@ -39,6 +39,7 @@ export async function getPost(categoryId: string, id: string) {
     attachments: post.attachments,
     sourceHref: post.sourceHref,
     views: post.views,
+    updatedAt: post.updatedAt.toISOString(),
     files: post.files.map((f) => ({ fileName: f.fileName, url: f.url, size: f.size })),
   };
 }

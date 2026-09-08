@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import AdminToolbar from "@/components/AdminToolbar";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/session";
 import NewPostForm from "./NewPostForm";
+
+export const metadata: Metadata = {
+  title: "새 게시물 작성 | 자료실",
+  robots: { index: false, follow: false },
+};
 
 export default async function NewPostPage() {
   const admin = await getCurrentAdmin();
@@ -16,7 +24,13 @@ export default async function NewPostPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-12">
-      <p className="text-xs font-semibold tracking-wide text-primary">자료실</p>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Link href="/data-room" className="text-sm font-medium text-muted hover:text-primary">
+          자료실 목록으로
+        </Link>
+        <AdminToolbar />
+      </div>
+      <p className="mt-6 text-xs font-semibold tracking-wide text-primary">자료실</p>
       <h1 className="mt-2 text-2xl font-black tracking-tight text-ink">새 게시물 작성</h1>
       <NewPostForm categories={categories} />
     </div>

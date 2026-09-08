@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import AdminToolbar from "@/components/AdminToolbar";
 import ResourceBoard from "@/components/ResourceBoard";
 import ScrollToTop from "@/components/ScrollToTop";
 import { getCategoriesWithPosts } from "@/lib/resource-queries";
@@ -12,8 +13,16 @@ export const metadata: Metadata = {
     "사회적협동조합 청소년자립학교의 공고, 소식, 공익법인 결산·공시 자료를 확인하세요.",
 };
 
-export default async function DataRoomPage() {
-  const [categories, admin] = await Promise.all([getCategoriesWithPosts(), getCurrentAdmin()]);
+export default async function DataRoomPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ notice?: string | string[] }>;
+}) {
+  const [categories, admin, query] = await Promise.all([
+    getCategoriesWithPosts(),
+    getCurrentAdmin(),
+    searchParams,
+  ]);
 
   return (
     <>
@@ -33,14 +42,21 @@ export default async function DataRoomPage() {
             </div>
 
             {admin && (
-              <Link
-                href="/data-room/new"
-                className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
-              >
-                + 작성하기
-              </Link>
+              <AdminToolbar>
+                <Link
+                  href="/data-room/new"
+                  className="shrink-0 rounded-full bg-primary px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
+                >
+                  + 작성하기
+                </Link>
+              </AdminToolbar>
             )}
           </div>
+          {admin && query.notice === "attachment-cleanup-failed" && (
+            <p role="status" className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+              게시물 변경은 반영됐지만 일부 첨부파일을 저장소에서 정리하지 못했습니다.
+            </p>
+          )}
         </div>
       </section>
 

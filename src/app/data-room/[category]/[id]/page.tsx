@@ -3,8 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategory, getCategoryPostList, getPost } from "@/lib/resource-queries";
 import { IconArrowLeft, IconPaperclip } from "@/components/icons";
+import AdminToolbar from "@/components/AdminToolbar";
+import DeletePostButton from "@/components/DeletePostButton";
 import RecordPostView from "@/components/RecordPostView";
 import ScrollToTop from "@/components/ScrollToTop";
+import { getCurrentAdmin } from "@/lib/session";
 
 type Params = { category: string; id: string };
 
@@ -28,12 +31,20 @@ export async function generateMetadata({
   };
 }
 
-export default async function ResourcePostPage({ params }: { params: Promise<Params> }) {
+export default async function ResourcePostPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<Params>;
+  searchParams: Promise<{ notice?: string | string[] }>;
+}) {
   const { category: categoryId, id } = await params;
-  const [category, post, posts] = await Promise.all([
+  const [category, post, posts, admin, query] = await Promise.all([
     getCategory(categoryId),
     getPost(categoryId, id),
     getCategoryPostList(categoryId),
+    getCurrentAdmin(),
+    searchParams,
   ]);
 
   if (!category || !post) {
@@ -71,6 +82,24 @@ export default async function ResourcePostPage({ params }: { params: Promise<Par
             <span>{post.date}</span>
             <span>조회 {post.views}</span>
           </p>
+          {admin && (
+            <div className="mt-5">
+              <AdminToolbar>
+                <Link
+                  href={`/data-room/${category.id}/${post.id}/edit`}
+                  className="rounded-full bg-primary px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
+                >
+                  게시물 수정
+                </Link>
+                <DeletePostButton postId={post.id} expectedUpdatedAt={post.updatedAt} />
+              </AdminToolbar>
+            </div>
+          )}
+          {admin && query.notice === "attachment-cleanup-failed" && (
+            <p role="status" className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+              게시물 변경은 반영됐지만 일부 첨부파일을 저장소에서 정리하지 못했습니다.
+            </p>
+          )}
         </div>
       </section>
 
