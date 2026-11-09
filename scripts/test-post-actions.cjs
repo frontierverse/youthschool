@@ -15,7 +15,7 @@ const MiB = 1024 * 1024;
 const postId = "post-under-test";
 const revision = "2026-09-08T00:00:00.000Z";
 const storageOrigin = "https://test-only.supabase.co";
-const bucket = "test-only-bucket";
+const bucket = "youthschool-site";
 const oldFile = {
   id: "attachment-owned-by-post",
   postId,
@@ -384,6 +384,7 @@ test("viewing a deleted post does not leave a misleading viewed cookie", async (
 
 function storageHarness() {
   const removed = [];
+  const uploaded = [];
   const storage = loadSource("src/lib/storage.ts", {
     "crypto": { randomUUID: () => "new-object" },
     "node:crypto": { randomUUID: () => "new-object" },
@@ -391,17 +392,32 @@ function storageHarness() {
       createClient() {
         return { storage: { from(selectedBucket) {
           assert.equal(selectedBucket, bucket);
-          return { async remove(keys) { removed.push(...keys); return { error: null }; } };
+          return {
+            async upload(key, file) { uploaded.push({ key, file }); return { error: null }; },
+            getPublicUrl(key) { return { data: { publicUrl: `${storageOrigin}/storage/v1/object/public/${selectedBucket}/${key}` } }; },
+            async remove(keys) { removed.push(...keys); return { error: null }; },
+          };
         } } };
       },
     },
   }, {
     NEXT_PUBLIC_SUPABASE_URL: storageOrigin,
     SUPABASE_SERVICE_ROLE_KEY: "test-only-key",
-    SUPABASE_STORAGE_BUCKET: bucket,
+    SUPABASE_STORAGE_BUCKET: "approval-attachments",
   });
-  return { storage, removed };
+  return { storage, removed, uploaded };
 }
+
+test("website uploads stay in their public bucket when another app's bucket is configured", async () => {
+  const h = storageHarness();
+  const file = makeFile(10, "공고문.pdf");
+  const attachment = await h.storage.uploadPostAttachment(postId, file);
+  assert.equal(h.uploaded.length, 1);
+  assert.equal(h.uploaded[0].key, `resource-posts/${postId}/new-object.pdf`);
+  assert.equal(h.uploaded[0].file, file);
+  assert.equal(attachment.url, `${storageOrigin}/storage/v1/object/public/${bucket}/resource-posts/${postId}/new-object.pdf`);
+  assert.equal(attachment.fileName, file.name);
+});
 
 test("storage cleanup accepts the post's public attachment URL and ignores its query string", async () => {
   const h = storageHarness();

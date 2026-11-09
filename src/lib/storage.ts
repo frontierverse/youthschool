@@ -2,7 +2,9 @@ import { randomUUID } from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { validateAttachmentFiles } from "@/lib/post-validation";
 
-const BUCKET = process.env.SUPABASE_STORAGE_BUCKET || "youthschool-site";
+// Website attachments are public and must stay in this app's dedicated bucket.
+// A shared environment variable must not route them to private approval files.
+const BUCKET = "youthschool-site";
 
 function getStorageClient() {
   return createClient(
